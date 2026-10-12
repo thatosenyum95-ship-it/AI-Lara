@@ -4,7 +4,7 @@ from __future__ import annotations
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
-from generator.spec_builder import build_spec
+from generator.spec_builder import build_spec\nfrom generator.project_builder import build_android_sources
 
 app = FastAPI(
     title="AI Lara API",
