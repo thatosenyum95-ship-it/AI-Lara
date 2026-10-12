@@ -1,0 +1,40 @@
+{"prompt":"Buat aplikasi catatan dengan pencarian","target":{"project_name":"Catatan","features":["notes","search"],"screens":["home","notes"]}}
+{"prompt":"Bikin aplikasi daftar tugas harian","target":{"project_name":"Daftar Tugas Harian","features":["todo"],"screens":["home","tasks"]}}
+{"prompt":"Tolong buat kalkulator sederhana","target":{"project_name":"Kalkulator Sederhana","features":["calculator"],"screens":["home","calculator"]}}
+{"prompt":"Buat aplikasi profil pengguna dan login","target":{"project_name":"Profil Pengguna","features":["login","profile"],"screens":["home","login","profile"]}}
+{"prompt":"Buat aplikasi kamera untuk mengambil foto dan menyimpan data","target":{"project_name":"Kamera","features":["camera","database"],"screens":["home","camera"]}}
+{"prompt":"Buat aplikasi memo offline","target":{"project_name":"Memo Offline","features":["notes","offline"],"screens":["home","notes"]}}
+{"prompt":"Buat aplikasi catatan yang bisa dicari dan disimpan","target":{"project_name":"Catatan","features":["search","notes","database"],"screens":["home","notes"]}}
+{"prompt":"Buat aplikasi pengingat tugas dengan notifikasi","target":{"project_name":"Pengingat Tugas","features":["todo","notifications"],"screens":["home","tasks"]}}
+{"prompt":"Buat aplikasi login dan catatan pribadi","target":{"project_name":"Catatan Pribadi","features":["login","notes"],"screens":["home","login","notes"]}}
+{"prompt":"Buat aplikasi kalkulator untuk menghitung angka","target":{"project_name":"Kalkulator","features":["calculator"],"screens":["home","calculator"]}}
+{"prompt":"Buat app profil dan autentikasi pengguna","target":{"project_name":"Profil Pengguna","features":["login","profile"],"screens":["home","login","profile"]}}
+{"prompt":"Bikin aplikasi untuk daftar pekerjaan dan menyimpan data","target":{"project_name":"Daftar Pekerjaan","features":["todo","database"],"screens":["home","tasks"]}}
+{"prompt":"Tolong buat aplikasi memo dengan fitur search","target":{"project_name":"Memo","features":["search","notes"],"screens":["home","notes"]}}
+{"prompt":"Buat aplikasi kamera offline","target":{"project_name":"Kamera Offline","features":["camera","offline"],"screens":["home","camera"]}}
+{"prompt":"Buat aplikasi catatan dengan login akun","target":{"project_name":"Catatan","features":["login","notes"],"screens":["home","login","notes"]}}
+{"prompt":"Buat aplikasi to do list dengan alarm","target":{"project_name":"To Do List","features":["todo","notifications"],"screens":["home","tasks"]}}
+{"prompt":"Buat aplikasi profil sederhana","target":{"project_name":"Profil Sederhana","features":["profile"],"screens":["home","profile"]}}
+{"prompt":"Buat aplikasi untuk mengambil gambar dan menyimpan foto","target":{"project_name":"Kamera","features":["camera","database"],"screens":["home","camera"]}}
+{"prompt":"Buat aplikasi pencarian catatan","target":{"project_name":"Pencarian Catatan","features":["search","notes"],"screens":["home","notes"]}}
+{"prompt":"Buat aplikasi catatan lokal tanpa internet","target":{"project_name":"Catatan Lokal","features":["notes","offline"],"screens":["home","notes"]}}
+{"prompt":"Buat aplikasi autentikasi dan profil","target":{"project_name":"Autentikasi","features":["login","profile"],"screens":["home","login","profile"]}}
+{"prompt":"Buat aplikasi daftar tugas offline dengan pengingat","target":{"project_name":"Daftar Tugas Offline","features":["todo","offline","notifications"],"screens":["home","tasks"]}}
+{"prompt":"Buat kalkulator dan profil pengguna","target":{"project_name":"Kalkulator","features":["calculator","profile"],"screens":["home","profile","calculator"]}}
+{"prompt":"Buat aplikasi catatan, login, dan pencarian","target":{"project_name":"Catatan","features":["search","login","notes"],"screens":["home","login","notes"]}}
+{"prompt":"Buat aplikasi memo yang menyimpan data lokal","target":{"project_name":"Memo","features":["notes","database","offline"],"screens":["home","notes"]}}
+{"prompt":"Buat aplikasi tugas dan profil pengguna","target":{"project_name":"Tugas","features":["todo","profile"],"screens":["home","tasks","profile"]}}
+{"prompt":"Buat aplikasi kamera dengan penyimpanan lokal","target":{"project_name":"Kamera","features":["camera","database","offline"],"screens":["home","camera"]}}
+{"prompt":"Buat aplikasi pencatat tugas dan pencarian","target":{"project_name":"Pencatat Tugas","features":["todo","search"],"screens":["home","tasks"]}}
+{"prompt":"Buat aplikasi catatan untuk menyimpan data tanpa internet","target":{"project_name":"Catatan","features":["notes","database","offline"],"screens":["home","notes"]}}
+{"prompt":"Buat aplikasi profil pengguna dengan penyimpanan data","target":{"project_name":"Profil Pengguna","features":["profile","database"],"screens":["home","profile"]}}
+{"prompt":"Bikin app kalkulator offline","target":{"project_name":"Kalkulator Offline","features":["calculator","offline"],"screens":["home","calculator"]}}
+{"prompt":"Tolong buat aplikasi login untuk profil pribadi","target":{"project_name":"Profil Pribadi","features":["login","profile"],"screens":["home","login","profile"]}}
+{"prompt":"Buat aplikasi tugas dengan pencarian dan notifikasi","target":{"project_name":"Tugas","features":["todo","search","notifications"],"screens":["home","tasks"]}}
+{"prompt":"Buat aplikasi catatan dan profil pengguna","target":{"project_name":"Catatan","features":["notes","profile"],"screens":["home","notes","profile"]}}
+{"prompt":"Buat aplikasi kamera untuk mengambil gambar","target":{"project_name":"Kamera","features":["camera"],"screens":["home","camera"]}}
+{"prompt":"Buat aplikasi daftar pekerjaan tanpa internet","target":{"project_name":"Daftar Pekerjaan","features":["todo","offline"],"screens":["home","tasks"]}}
+{"prompt":"Buat aplikasi memo dan login pengguna","target":{"project_name":"Memo","features":["login","notes"],"screens":["home","login","notes"]}}
+{"prompt":"Buat aplikasi kalkulator dengan penyimpanan data","target":{"project_name":"Kalkulator","features":["calculator","database"],"screens":["home","calculator"]}}
+{"prompt":"Buat aplikasi pencarian memo dan profil","target":{"project_name":"Pencarian Memo","features":["search","notes","profile"],"screens":["home","notes","profile"]}}
+{"prompt":"Buat aplikasi tugas, login, dan profil","target":{"project_name":"Tugas","features":["todo","login","profile"],"screens":["home","login","tasks","profile"]}}
