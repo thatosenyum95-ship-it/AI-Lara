@@ -1,0 +1,5 @@
+{"prompt":"Buat aplikasi catatan dengan fitur pencarian","features":["notes","search"],"screens":["home","notes"]}
+{"prompt":"Buat aplikasi daftar tugas dengan notifikasi","features":["todo","notifications"],"screens":["home","tasks"]}
+{"prompt":"Buat aplikasi kalkulator sederhana","features":["calculator"],"screens":["home","calculator"]}
+{"prompt":"Buat aplikasi profil dengan login","features":["login","profile"],"screens":["home","login","profile"]}
+{"prompt":"Buat aplikasi kamera yang bisa menyimpan foto","features":["camera","database"],"screens":["home","camera"]}
