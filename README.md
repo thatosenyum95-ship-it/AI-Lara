@@ -4,14 +4,14 @@ AI Lara adalah proyek bertahap untuk membangun sistem yang menerima instruksi ba
 
 ## Status
 
-**Tahap 2 — generator spesifikasi awal.** Repo ini sekarang memiliki:
+**Tahap 3 — generator kode sumber awal.** Repo ini sekarang memiliki:
 - Aplikasi Android contoh berbasis Kotlin + Jetpack Compose.
 - Workflow GitHub Actions untuk membangun APK debug.
 - Modul Python yang mengubah prompt menjadi spesifikasi JSON sederhana.
 - API FastAPI untuk mengakses generator tersebut.
 - Contoh dataset JSONL dan tes otomatis untuk generator.
 
-**Batasan saat ini:** generator masih berbasis aturan kata kunci, bukan model AI yang dilatih dari nol. Endpoint `/generate-spec` hanya menghasilkan spesifikasi, belum kode Android atau APK.
+**Batasan saat ini:** generator masih berbasis aturan kata kunci, bukan model AI yang dilatih dari nol. Endpoint `/generate-project` menghasilkan berkas awal Kotlin/Compose dan manifest berdasarkan fitur yang dikenali, tetapi belum mengemas proyek lengkap atau membangun APK dari prompt. Kode hasil generator harus diuji sebelum dipakai.
 
 ## Cara mengunduh APK contoh
 
@@ -48,7 +48,7 @@ curl -X POST http://127.0.0.1:8000/generate-spec \
   -d '{"prompt":"Buat aplikasi catatan dengan fitur pencarian"}'
 ```
 
-Dokumentasi interaktif FastAPI tersedia di `/docs` saat API dijalankan.
+Untuk membuat kode sumber awal, kirim permintaan ke `/generate-project` dengan body JSON yang sama. Respons berisi pemetaan path berkas ke konten sumber; endpoint ini belum membuat ZIP atau APK.\n\nDokumentasi interaktif FastAPI tersedia di `/docs` saat API dijalankan.
 
 ## Tes
 
@@ -62,7 +62,7 @@ python -m unittest discover -s tests -v
 - [x] Build APK otomatis.
 - [x] Generator spesifikasi awal dan tes otomatis.
 - [ ] Hubungkan aplikasi Android ke backend yang di-host dengan aman.
-- [ ] Tambahkan generator proyek Android dari spesifikasi yang tervalidasi.
+- [x] Generator kode sumber Android awal dari spesifikasi.\n- [ ] Kemas seluruh proyek Android menjadi ZIP yang dapat diunduh.
 - [ ] Jalankan build APK per permintaan dalam lingkungan terisolasi.
 - [ ] Buat dataset lebih besar dan eksperimen model kecil yang benar-benar dilatih.
 - [ ] Uji keamanan, dependensi, izin Android, dan APK sebelum dibagikan.
