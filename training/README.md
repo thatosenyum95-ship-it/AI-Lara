@@ -1,51 +1,71 @@
-# Rencana pelatihan AI-Lara
+# AI-Lara QLoRA training from Google Colab (phone-friendly)
 
-Dokumen ini membedakan generator aturan yang sudah ada dari model yang benar-benar dilatih.
+This is a **starter experiment**, not a claim that AI-Lara is already trained. It fine-tunes the open-weight `Qwen/Qwen2.5-1.5B-Instruct` base model using 4-bit QLoRA and saves only the small adapter. The model card lists Apache-2.0 licensing; review the model card and terms before deployment: https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct. QLoRA uses 4-bit quantization plus trainable LoRA adapters; see https://huggingface.co/docs/peft/developer_guides/quantization.
 
-## Target pertama: model pembuat spesifikasi aplikasi
+## Important limitations
 
-Jangan mulai dengan melatih model besar dari nol atau langsung menghasilkan seluruh kode Kotlin. Target versi pertama adalah model yang mengubah instruksi bahasa Indonesia menjadi JSON spesifikasi aplikasi yang konsisten. Generator Android kemudian memakai spesifikasi itu untuk menyusun proyek.
+- The curated seed dataset is only 40 examples. It proves the pipeline can be exercised; it is far too small for a useful production model and may overfit badly.
+- This first model learns a narrow JSON specification task, **not complete Kotlin code generation and not APK compilation**.
+- Outputs must be validated. Do not deploy generated code or connect this adapter to the public API without evaluation and safety checks.
+- Colab GPU availability varies by account and session. The script requires a CUDA GPU; no GPU means training will stop with a clear message.
+- The held-out test set is saved after training. It is not used for gradient updates. Run evaluation and inspect every prediction.
 
-Contoh masukan:
-```text
-Buat aplikasi catatan dengan pencarian dan mode gelap
+## Run from an Android phone
+
+1. Open https://colab.research.google.com/ in Chrome. If needed, enable **Desktop site** in Chrome's menu.
+2. Create a new notebook.
+3. In **Runtime → Change runtime type**, select a GPU accelerator (T4 if available), then save.
+4. Run these cells in order. If Colab disconnects, reconnect and rerun the setup cells.
+
+### Cell 1 — install libraries
+
+```python
+!pip -q install -U "transformers>=4.46,<5" "peft>=0.13" "accelerate>=1.1" "bitsandbytes>=0.44" "safetensors"
 ```
 
-Contoh keluaran yang diharapkan:
-```json
-{
-  "project_name": "Catatan",
-  "platform": "android",
-  "features": ["notes", "search", "dark_mode"],
-  "screens": ["home", "notes", "search", "settings"]
-}
+### Cell 2 — connect Google Drive to preserve the adapter
+
+```python
+from google.colab import drive
+drive.mount('/content/drive')
 ```
 
-Struktur JSON di atas adalah ilustrasi format target. Format akhir harus disamakan dengan kontrak yang dipakai `generator/spec_builder.py` sebelum pelatihan dimulai.
+### Cell 3 — download the repository
 
-## Tahapan
+```python
+!git clone https://github.com/thatosenyum95-ship-it/AI-Lara.git /content/AI-Lara
+```
 
-1. **Rapikan dataset.** Setiap baris `dataset/examples.jsonl` harus berisi satu contoh valid. Tambahkan variasi bahasa Indonesia, ejaan sehari-hari, kombinasi fitur, permintaan yang kurang jelas, serta contoh yang menguji batas kemampuan.
-2. **Tingkatkan kualitas contoh.** Lima contoh awal hanyalah benih dataset, belum cukup untuk fine-tuning yang dapat diandalkan. Mulai kumpulkan ratusan contoh yang ditinjau manusia; target ribuan contoh berkualitas untuk cakupan yang lebih luas. Jangan menyalin kode berlisensi tanpa izin.
-3. **Pisahkan data.** Buat set pelatihan, validasi, dan pengujian. Contoh yang hampir sama jangan tersebar di semua set, agar evaluasi tidak menipu.
-4. **Pilih model dasar.** Gunakan model bahasa terbuka yang lisensinya sesuai, mendukung bahasa Indonesia, dan cukup kecil untuk sumber daya yang tersedia. Catat nama model, versi, dan lisensinya.
-5. **Fine-tuning LoRA/QLoRA.** Jalankan eksperimen awal di lingkungan GPU seperti Google Colab atau layanan GPU yang tepercaya. Ponsel Android dapat dipakai untuk mengelola repo dan memantau proses, tetapi umumnya bukan perangkat yang sesuai untuk melatih model bahasa.
-6. **Evaluasi sebelum dipakai.** Ukur JSON valid, kecocokan fitur/layar, konsistensi nama proyek, dan hasil build proyek yang dibuat dari prediksi model. Simpan model terbaik dan hasil evaluasi.
-7. **Integrasikan dengan API.** Jalankan model di layanan yang punya RAM/VRAM memadai. API harus memvalidasi keluaran model dan memakai generator proyek; jangan menganggap keluaran model sebagai kode yang pasti aman atau bisa dikompilasi.
-8. **Tingkatkan bertahap.** Setelah pembuat spesifikasi stabil, pertimbangkan dataset dan evaluasi terpisah untuk pembuatan kode, perbaikan build, serta pembuatan APK.
+If the folder already exists after a reconnect, use `!git -C /content/AI-Lara pull` instead.
 
-## Apa arti “dilatih dari nol”?
+### Cell 4 — validate the dataset
 
-Melatih model bahasa dari bobot acak membutuhkan dataset teks sangat besar, banyak GPU, waktu, dan biaya. Untuk proyek awal ini, pilihan yang lebih masuk akal adalah **fine-tuning model dasar yang sudah ada**. Itu tetap proses pelatihan, tetapi bukan melatih seluruh model dari nol.
+```python
+!python /content/AI-Lara/training/validate_dataset.py
+```
 
-## Gerbang sebelum pelatihan
+### Cell 5 — train
 
-- [ ] Kontrak JSON keluaran disepakati dan konsisten dengan generator.
-- [ ] Dataset lolos validasi format otomatis.
-- [ ] Contoh duplikat dan data yang tidak berizin disingkirkan.
-- [ ] Set validasi dan pengujian disiapkan.
-- [ ] Model dasar dan lisensinya diperiksa.
-- [ ] Ada baseline dari generator aturan saat ini untuk dibandingkan.
-- [ ] Tidak ada token, kata sandi, atau rahasia dalam dataset dan log.
+```python
+%env AILARA_OUTPUT_DIR=/content/drive/MyDrive/AI-Lara-Training/adapter
+!python /content/AI-Lara/training/train_qlora.py
+```
 
-**Status saat ini:** AI-Lara belum memiliki model yang sudah di-fine-tune. Dataset awal berisi lima contoh, dan generator saat ini berbasis aturan. Dokumen ini adalah rencana kerja, bukan klaim bahwa pelatihan sudah dilakukan.
+The first run downloads the base model and can take time. Keep the Colab tab open while training. The adapter, tokenizer, summary, and held-out test file are saved in Google Drive.
+
+### Cell 6 — evaluate the held-out examples
+
+```python
+%env AILARA_OUTPUT_DIR=/content/drive/MyDrive/AI-Lara-Training/adapter
+!python /content/AI-Lara/training/evaluate.py
+```
+
+Check JSON validity and feature/screen matches; read the printed predictions. Since the test set is tiny, results are only a first signal. Add more varied, human-reviewed examples, rerun training, and compare against the existing rule-based baseline.
+
+## Dataset format
+
+Each line of `examples.jsonl` is one JSON object with `prompt` and `target`. Targets contain `project_name`, `features`, and `screens`, aligned to the first training task. The trainer deterministically splits the examples into train, validation, and held-out test subsets.
+
+## Next engineering step
+
+After the model is demonstrably better than the rule-based baseline, implement a dedicated model inference adapter and strict JSON/schema validation in `backend/main.py`. Keep the current deterministic generator as fallback. Do not claim APK creation until a real Android build succeeds for each generated project.
