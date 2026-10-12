@@ -5,6 +5,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: ai-lara-android-build-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
