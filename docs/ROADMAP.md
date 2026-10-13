@@ -13,17 +13,17 @@ Menerima instruksi bahasa Indonesia, menyusun spesifikasi aplikasi, menghasilkan
 
 ## Status realistis
 - Kerangka Android dan workflow build tersedia di repositori.
-- Generator saat ini merupakan prototipe berbasis aturan; belum otomatis menggunakan adapter Qwen yang dilatih.
+- Generator saat ini merupakan prototipe berbasis aturan; workflow manual menerima prompt, membuat kerangka sumber Android, lalu menjalankan Gradle untuk menghasilkan APK debug. Workflow ini belum otomatis menggunakan adapter Qwen yang dilatih.
 - Endpoint generator menghasilkan berkas sumber awal, bukan paket proyek lengkap atau APK per permintaan.
 - Notebook kini memuat alur pelatihan LoRA percobaan dan ekspor adapter, tetapi pengguna tetap harus menjalankan sel di Colab.
 - Contoh dataset saat ini hanya untuk memeriksa alur kerja. Jangan menganggap hasilnya siap produksi.
 
 ## Tahapan pengembangan
 1. Jalankan tes Python dan workflow build APK.
-2. Jalankan notebook Colab dari atas ke bawah menggunakan GPU.
-3. Ganti contoh dataset dengan banyak contoh berkualitas dan evaluasi pada data terpisah.
+2. Jalankan notebook Colab dari atas ke bawah menggunakan GPU; simpan adapter ke Google Drive dan jalankan sel uji respons.
+3. Ganti dataset contoh dengan banyak contoh berkualitas dan evaluasi pada data terpisah.
 4. Buat penghubung backend ke model/adapter yang dievaluasi.
-5. Tambahkan generator proyek lengkap, arsip ZIP, dan build APK per permintaan di runner terisolasi.
+5. Tingkatkan generator menjadi proyek Android dengan fitur nyata, bukan hanya layar awal.
 6. Tambahkan validasi kode, pembatasan izin/dependensi, batas waktu, batas ukuran, dan pengujian APK.
 
 ## Keamanan
