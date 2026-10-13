@@ -4,6 +4,10 @@ AI Lara adalah proyek bertahap untuk membangun sistem yang menerima instruksi ba
 
 ## Status
 
+**Notebook pelatihan:** [AI-Lara-Training.ipynb](notebooks/AI-Lara-Training.ipynb) — memuat Qwen, menyiapkan LoRA, menjalankan pelatihan percobaan, dan menyimpan adapter. Jalankan di Google Colab dengan GPU; dataset bawaan hanya contoh kecil.
+
+**Peta jalan:** [docs/ROADMAP.md](docs/ROADMAP.md). Format dan pedoman data: [dataset/README.md](dataset/README.md).
+
 **Tahap 3 — generator kode sumber awal.** Repo ini sekarang memiliki:
 - Aplikasi Android contoh berbasis Kotlin + Jetpack Compose.
 - Workflow GitHub Actions untuk membangun APK debug.
